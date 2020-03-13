@@ -50,7 +50,10 @@ class CategoryController extends BaseController
      */
     public function create()
     {
-        $item = new BlogCategory();
+        // $item = new BlogCategory();
+
+        // Создает экземпляр класса но не сохраняет в БД
+        $item = BlogCategory::make();
 
 //        dd($item);
 //        $categoryList = BlogCategory::all();
@@ -83,7 +86,8 @@ class CategoryController extends BaseController
 
 
         //Создаст обьект и добавит в БД
-        $item = (new BlogCategory())->create($data);
+        //$item = (new BlogCategory())->create($data);
+        $item = BlogCategory::create($data);
         if ($item){
             return redirect()->route('blog.admin.categories.edit', [$item->id])
                 ->with(['success'=>'Успешно сохранено']);
